@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
     
-    <style>      
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+        
+        #content {
+            text-align: center;
+        }
+        
         #games_played_bar {
             width: 0px;
             height: 12px;
-            background-color: gray; 
+            background-color: gray;
+            margin: auto;
         }
         
         #games_won_bar {
@@ -109,6 +118,25 @@
             // Sets and displays the games lost bar
             var games_lost_bar_length = String(games_lost * 12) + "px";
             document.getElementById("games_lost_bar").style.width = games_lost_bar_length;
+            
+            // Determines and prints the player rank after 10 plays
+            if (games_played > 5) {
+                if (games_won / games_played >= 0.8) {
+                    document.getElementById("rank").innerHTML = "RANK: General *****";
+                }
+                else if (games_won / games_played >= 0.6) {
+                    document.getElementById("rank").innerHTML = "RANK: Colonel ****";
+                }
+                else if (games_won / games_played >= 0.4) {
+                    document.getElementById("rank").innerHTML = "RANK: Captain ***";
+                }
+                else if (games_won / games_played >= 0.2) {
+                    document.getElementById("rank").innerHTML = "RANK: Officer **";
+                }
+                else {
+                    document.getElementById("rank").innerHTML = "RANK: Private *";
+                }
+            }
         }
         
         // Initiates the game stats
@@ -117,19 +145,23 @@
         var games_lost = 0;
     </script>
     
-    <button onclick="playGame('rock')">ROCK</button>
-    <button onclick="playGame('paper')">PAPER</button>
-    <button onclick="playGame('scissors')">SCISSORS</button>
-    
-    <!-- Game stats -->
-    <p id="result">Rock... Paper... Scissors... SHOOT!!!</p>
-    <h3 id="games_played">Games Played: 0</h3>
-    <h3 id="games_won">Games Won: 0</h3>
-    
-    <!-- Game stats graphic bar -->
-    <div id="games_played_bar">
-        <div id="games_won_bar"></div>
-        <div id="games_lost_bar"></div>
-    </div>
+    <div id="content">
+        <button onclick="playGame('rock')">ROCK</button>
+        <button onclick="playGame('paper')">PAPER</button>
+        <button onclick="playGame('scissors')">SCISSORS</button>
+
+        <!-- Game stats -->
+        <p id="result">Rock... Paper... Scissors... SHOOT!!!</p>
+        <h3 id="games_played">Games Played: 0</h3>
+        <h3 id="games_won">Games Won: 0</h3>
+
+        <!-- Game stats graphic bar -->
+        <div id="games_played_bar">
+            <div id="games_won_bar"></div>
+            <div id="games_lost_bar"></div>
+        </div>
+        
+        <h2 id="rank">RANK: Gathering Intel...</h2>
+    </div> <!-- end content div -->
 </body>
 </html>
