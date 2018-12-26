@@ -3,41 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
-</head>
-<body>
-    <!-- 1. User Makes thier choice using button and is saved to a variable
-         2. Computer makes a random choice
-         3. The 2 choices are compared to one another and a winner is declared -->
     
+    <style>      
+        #games_played_bar {
+            width: 0px;
+            height: 12px;
+            background-color: gray;
+        }
+        
+        #games_won_bar {
+            width: 0px;
+            height: 12px;
+            background-color: greenyellow;
+            float: left;
+        }
+        
+        #games_lost_bar {
+            width: 0px;
+            height: 12px;
+            background-color: red;
+            float: right;
+        }
+    </style>
+</head>
+<body> 
     <script type="text/javascript">
-        //Generates a random integer between the defined 'min' and 'max'
+        // Generates a random integer between the defined 'min' and 'max'
         function getRandomInteger(min, max) {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
         }
         
-        //Game function initiates when a selection is made (button pressed)
+        // Game function initiates when a selection is made (button pressed)
         function playGame(selection) {
             games_played += 1;
             console.log(games_played);
+            
+            // Prints number of games played to the screen
             document.getElementById("games_played").innerHTML = "Games Played: " + games_played;
             
-            //Determine user selection based on the button pressed
+            // Determine user selection based on the button pressed
             var user_selection = selection;
             console.log(user_selection);
             
-            //Generates a randomly chosen enemy selection
+            // Generates a randomly chosen enemy selection
             var random_index = getRandomInteger(0, 2);
             var options = ["rock", "paper", "scissors"];
             var enemy_selection = options[random_index];
             console.log(enemy_selection);
             
-            //Series of if statemets to compare the 2 player's selections
-            //Checks if the selections are the same (cat's game)
+            // Series of if statemets to compare the 2 player's selections
+            // Checks if the selections are the same (cat's game)
             if (user_selection === enemy_selection) {
-                document.getElementById("result").innerHTML = "Cat's game, try agian.";
+                document.getElementById("result").innerHTML = "Cat's game, TRY AGAIN.";
             }
             
-            //If user chooses rock...
+            // If user chooses rock...
             else if (user_selection === "rock") {
                 if (enemy_selection === "paper") {
                     document.getElementById("result").innerHTML = "Paper covers rock, you LOSE.";
@@ -73,10 +93,23 @@
                 }
             }
             
+            // Prints number of games won to the screen
             document.getElementById("games_won").innerHTML = "Games Won: " + games_won;
+            
+            // Sets and displays the games played bar
+            var games_played_bar_length = String(games_played * 12) + "px"
+            document.getElementById("games_played_bar").style.width = games_played_bar_length;
+            
+            // Sets and displays the games won bar
+            var games_won_bar_length = String(games_won * 12) + "px"
+            document.getElementById("games_won_bar").style.width = games_won_bar_length;
+            
+            // Sets and displays the games lost bar
+            var games_lost_bar_length = String(games_lost * 12) + "px"
+            document.getElementById("games_lost_bar").style.width = games_lost_bar_length;
         }
         
-        //initiates the game stats
+        // Initiates the game stats
         var games_played = 0;
         var games_won = 0;
         var games_lost = 0;
@@ -85,8 +118,16 @@
     <button onclick="playGame('rock')">ROCK</button>
     <button onclick="playGame('paper')">PAPER</button>
     <button onclick="playGame('scissors')">SCISSORS</button>
-    <h3 id="games_played">Games Played: 0</h1>
-    <h3 id="games_won">Games Won: 0</h1>
-    <p id="result"></p>
+    
+    <!-- Game stats -->
+    <p id="result">Rock... Paper... Scissors... SHOOT!!!</p>
+    <h3 id="games_played">Games Played: 0</h3>
+    <h3 id="games_won">Games Won: 0</h3>
+    
+    <!-- Game stats graphic bar -->
+    <div id="games_played_bar">
+        <div id="games_won_bar"></div>
+        <div id="games_lost_bar"></div>
+    </div>
 </body>
 </html>
