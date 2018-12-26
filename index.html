@@ -26,12 +26,44 @@
             var options = ["rock", "paper", "scissors"];
             var enemy_selection = options[random_index];
             console.log(enemy_selection);
+            
+            if (user_selection === enemy_selection) {
+                document.getElementById("result").innerHTML = "Cat's game, try agian.";
+            }
+            
+            else if (user_selection === "rock") {
+                if (enemy_selection === "paper") {
+                    document.getElementById("result").innerHTML = "Paper covers rock, you LOSE.";
+                }
+                else if (enemy_selection === "scissors") {
+                    document.getElementById("result").innerHTML = "Rock smashes scissors, you WIN!";
+                }
+            }
+            
+            else if (user_selection === "paper") {
+                if (enemy_selection === "rock") {
+                    document.getElementById("result").innerHTML = "Paper covers rock, you WIN.";
+                }
+                else if (enemy_selection === "scissors") {
+                    document.getElementById("result").innerHTML = "Scissors cut paper, you LOSE.";
+                }
+            }
+            
+            else if (user_selection === "scissors") {
+                if (enemy_selection === "rock") {
+                    document.getElementById("result").innerHTML = "Rock smashes scissors, you LOSE.";
+                }
+                else if (enemy_selection === "paper") {
+                    document.getElementById("result").innerHTML = "Scissors cut paper, you WIN!";
+                }
+            }
         }
     </script>
     
     <button onclick="playGame('rock')">ROCK</button>
     <button onclick="playGame('paper')">PAPER</button>
     <button onclick="playGame('scissors')">SCISSORS</button>
+    <p id="result"></p>
 </body>
 </html>
 
