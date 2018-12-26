@@ -8,7 +8,7 @@
         #games_played_bar {
             width: 0px;
             height: 12px;
-            background-color: gray;
+            background-color: gray; 
         }
         
         #games_won_bar {
@@ -94,18 +94,20 @@
             }
             
             // Prints number of games won to the screen
-            document.getElementById("games_won").innerHTML = "Games Won: " + games_won;
+            var win_percentage = (games_won / games_played * 100).toFixed(1);
+            document.getElementById("games_won").innerHTML = "Games Won: " + games_won + " (" + win_percentage + "%)";
             
             // Sets and displays the games played bar
-            var games_played_bar_length = String(games_played * 12) + "px"
+            var games_played_bar_length = String(games_played * 12) + "px";
             document.getElementById("games_played_bar").style.width = games_played_bar_length;
+            document.getElementById("games_played_bar").style.border = "1px solid black";
             
             // Sets and displays the games won bar
-            var games_won_bar_length = String(games_won * 12) + "px"
+            var games_won_bar_length = String(games_won * 12) + "px";
             document.getElementById("games_won_bar").style.width = games_won_bar_length;
             
             // Sets and displays the games lost bar
-            var games_lost_bar_length = String(games_lost * 12) + "px"
+            var games_lost_bar_length = String(games_lost * 12) + "px";
             document.getElementById("games_lost_bar").style.width = games_lost_bar_length;
         }
         
