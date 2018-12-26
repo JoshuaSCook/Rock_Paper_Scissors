@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    
+
+</head>
+<body>
+    <!-- 1. User Makes thier choice using button and is saved to a variable
+         2. Computer makes a random choice
+         3. The 2 choices are compared to one another and a winner is declared -->
+    
+    <script type="text/javascript">
+        //Generates a random integer between the defined 'min' and 'max'
+        function getRandomInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
+        }
+        
+        //Game function initiates when a selection is made (button pressed)
+        function playGame(selection) {
+            var user_selection = selection;
+            console.log(user_selection);
+            
+            var random_index = getRandomInteger(0, 2);
+            var options = ["rock", "paper", "scissors"];
+            var enemy_selection = options[random_index];
+            console.log(enemy_selection);
+        }
+    </script>
+    
+    <button onclick="playGame('rock')">ROCK</button>
+    <button onclick="playGame('paper')">PAPER</button>
+    <button onclick="playGame('scissors')">SCISSORS</button>
+</body>
+</html>
+
