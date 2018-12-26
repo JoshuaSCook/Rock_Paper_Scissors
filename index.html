@@ -1,10 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
-    
-
 </head>
 <body>
     <!-- 1. User Makes thier choice using button and is saved to a variable
@@ -19,51 +17,76 @@
         
         //Game function initiates when a selection is made (button pressed)
         function playGame(selection) {
+            games_played += 1;
+            console.log(games_played);
+            document.getElementById("games_played").innerHTML = "Games Played: " + games_played;
+            
+            //Determine user selection based on the button pressed
             var user_selection = selection;
             console.log(user_selection);
             
+            //Generates a randomly chosen enemy selection
             var random_index = getRandomInteger(0, 2);
             var options = ["rock", "paper", "scissors"];
             var enemy_selection = options[random_index];
             console.log(enemy_selection);
             
+            //Series of if statemets to compare the 2 player's selections
+            //Checks if the selections are the same (cat's game)
             if (user_selection === enemy_selection) {
                 document.getElementById("result").innerHTML = "Cat's game, try agian.";
             }
             
+            //If user chooses rock...
             else if (user_selection === "rock") {
                 if (enemy_selection === "paper") {
                     document.getElementById("result").innerHTML = "Paper covers rock, you LOSE.";
+                    games_lost += 1;
                 }
                 else if (enemy_selection === "scissors") {
                     document.getElementById("result").innerHTML = "Rock smashes scissors, you WIN!";
+                    games_won += 1;
                 }
             }
             
+            //If user chooses paper...
             else if (user_selection === "paper") {
                 if (enemy_selection === "rock") {
                     document.getElementById("result").innerHTML = "Paper covers rock, you WIN.";
+                    games_won += 1;
                 }
                 else if (enemy_selection === "scissors") {
                     document.getElementById("result").innerHTML = "Scissors cut paper, you LOSE.";
+                    games_lost += 1;
                 }
             }
             
+            //If user chooses scissors...
             else if (user_selection === "scissors") {
                 if (enemy_selection === "rock") {
                     document.getElementById("result").innerHTML = "Rock smashes scissors, you LOSE.";
+                    games_lost += 1;
                 }
                 else if (enemy_selection === "paper") {
                     document.getElementById("result").innerHTML = "Scissors cut paper, you WIN!";
+                    games_won += 1;
                 }
             }
+            
+            document.getElementById("games_won").innerHTML = "Games Won: " + games_won;
         }
+        
+        //initiates the game stats
+        var games_played = 0;
+        var games_won = 0;
+        var games_lost = 0;
     </script>
     
     <button onclick="playGame('rock')">ROCK</button>
     <button onclick="playGame('paper')">PAPER</button>
     <button onclick="playGame('scissors')">SCISSORS</button>
+    <h3 id="games_played">Games Played: 0</h1>
+    <h3 id="games_won">Games Won: 0</h1>
     <p id="result"></p>
 </body>
 </html>
-
