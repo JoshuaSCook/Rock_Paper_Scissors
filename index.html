@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
     
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
     <style>
+        html {
+            height: 100%;
+        }
+        
         body {
-            background-color: aliceblue;
+            background-image: linear-gradient(to bottom right, darkorange, yellow);
+            font-family: 'Open Sans', sans-serif; 
         }
         
         #content {
             text-align: center;
+        }
+        
+        .selection_icon {
+            width: 150px;
+            height: 150px;
         }
         
         #games_played_bar {
@@ -69,11 +81,11 @@
             // If user chooses rock...
             else if (user_selection === "rock") {
                 if (enemy_selection === "paper") {
-                    document.getElementById("result").innerHTML = "Paper covers rock, you LOSE.";
+                    document.getElementById("result").innerHTML = "Enemy throws paper, paper covers rock, you LOSE.";
                     games_lost += 1;
                 }
                 else if (enemy_selection === "scissors") {
-                    document.getElementById("result").innerHTML = "Rock smashes scissors, you WIN!";
+                    document.getElementById("result").innerHTML = "Enemy throws paper, rock smashes scissors, you WIN!";
                     games_won += 1;
                 }
             }
@@ -81,11 +93,11 @@
             //If user chooses paper...
             else if (user_selection === "paper") {
                 if (enemy_selection === "rock") {
-                    document.getElementById("result").innerHTML = "Paper covers rock, you WIN.";
+                    document.getElementById("result").innerHTML = "Enemy throws paper, paper covers rock, you WIN.";
                     games_won += 1;
                 }
                 else if (enemy_selection === "scissors") {
-                    document.getElementById("result").innerHTML = "Scissors cut paper, you LOSE.";
+                    document.getElementById("result").innerHTML = "Enemy throws paper, scissors cut paper, you LOSE.";
                     games_lost += 1;
                 }
             }
@@ -93,11 +105,11 @@
             //If user chooses scissors...
             else if (user_selection === "scissors") {
                 if (enemy_selection === "rock") {
-                    document.getElementById("result").innerHTML = "Rock smashes scissors, you LOSE.";
+                    document.getElementById("result").innerHTML = "Enemy throws paper, rock smashes scissors, you LOSE.";
                     games_lost += 1;
                 }
                 else if (enemy_selection === "paper") {
-                    document.getElementById("result").innerHTML = "Scissors cut paper, you WIN!";
+                    document.getElementById("result").innerHTML = "Enemy throws paper, scissors cut paper, you WIN!";
                     games_won += 1;
                 }
             }
@@ -115,26 +127,31 @@
             var games_won_bar_length = String(games_won * 12) + "px";
             document.getElementById("games_won_bar").style.width = games_won_bar_length;
             
-            // Sets and displays the games lost bar
+            // Sets and displays the games lost bar (not active until html is uncommented)
             var games_lost_bar_length = String(games_lost * 12) + "px";
             document.getElementById("games_lost_bar").style.width = games_lost_bar_length;
             
             // Determines and prints the player rank after 10 plays
             if (games_played > 5) {
                 if (games_won / games_played >= 0.8) {
-                    document.getElementById("rank").innerHTML = "RANK: General *****";
+                    document.getElementById("rank").innerHTML = "*****";
+                    document.getElementById("rank_title").innerHTML = "Albert Einstein";
                 }
                 else if (games_won / games_played >= 0.6) {
-                    document.getElementById("rank").innerHTML = "RANK: Colonel ****";
+                    document.getElementById("rank").innerHTML = "****";
+                    document.getElementById("rank_title").innerHTML = "George Carlin";
                 }
                 else if (games_won / games_played >= 0.4) {
-                    document.getElementById("rank").innerHTML = "RANK: Captain ***";
+                    document.getElementById("rank").innerHTML = "***";
+                    document.getElementById("rank_title").innerHTML = "Cocoa the Gorilla";
                 }
                 else if (games_won / games_played >= 0.2) {
-                    document.getElementById("rank").innerHTML = "RANK: Officer **";
+                    document.getElementById("rank").innerHTML = "**";
+                    document.getElementById("rank_title").innerHTML = "Curious George";
                 }
                 else {
-                    document.getElementById("rank").innerHTML = "RANK: Private *";
+                    document.getElementById("rank").innerHTML = "*";
+                    document.getElementById("rank_title").innerHTML = "Lucy (Australopithecus)";
                 }
             }
         }
@@ -146,9 +163,9 @@
     </script>
     
     <div id="content">
-        <button onclick="playGame('rock')">ROCK</button>
-        <button onclick="playGame('paper')">PAPER</button>
-        <button onclick="playGame('scissors')">SCISSORS</button>
+        <input class="selection_icon" type="image" src="images/rock.png" onclick="playGame('rock')">
+        <input class="selection_icon" type="image" src="images/paper.png" onclick="playGame('paper')">
+        <input class="selection_icon" type="image" src="images/scissors.png" onclick="playGame('scissors')">
 
         <!-- Game stats -->
         <p id="result">Rock... Paper... Scissors... SHOOT!!!</p>
@@ -161,7 +178,10 @@
             <div id="games_lost_bar"></div>
         </div>
         
+        <!-- 
         <h2 id="rank">RANK: Gathering Intel...</h2>
+        <h3 id="rank_title"></h3>
+        -->
     </div> <!-- end content div -->
 </body>
 </html>
