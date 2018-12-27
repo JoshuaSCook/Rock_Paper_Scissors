@@ -25,6 +25,11 @@
             height: 150px;
         }
         
+        .shadowed {
+            -webkit-filter: drop-shadow(5px 5px 5px #222);
+            filter: drop-shadow(5px 5px 5px #222);
+        }
+        
         #games_played_bar {
             width: 0px;
             height: 12px;
@@ -163,9 +168,9 @@
     </script>
     
     <div id="content">
-        <input class="selection_icon" type="image" src="images/rock.png" onclick="playGame('rock')">
-        <input class="selection_icon" type="image" src="images/paper.png" onclick="playGame('paper')">
-        <input class="selection_icon" type="image" src="images/scissors.png" onclick="playGame('scissors')">
+        <input class="selection_icon shadowed" type="image" src="images/rock.png" onclick="playGame('rock')">
+        <input class="selection_icon shadowed" type="image" src="images/paper.png" onclick="playGame('paper')">
+        <input class="selection_icon shadowed" type="image" src="images/scissors.png" onclick="playGame('scissors')">
 
         <!-- Game stats -->
         <p id="result">Rock... Paper... Scissors... SHOOT!!!</p>
